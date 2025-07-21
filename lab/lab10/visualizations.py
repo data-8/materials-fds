@@ -137,18 +137,18 @@ def make_displayed_rectangles(combinations):
             rectangles.append(rectangle_for_percentile(start_percentile, end_percentile, color))
         return rectangles
 
-    displays.append_column("rectangles", displays.apply(rectangles_for_percentage_range, ["start amount", "end amount", "color"]))
+    rectangles_list = [rectangles_for_percentage_range(row[0], row[1], row[2]) for row in displays.select("start amount", "end amount", "color").rows]
 
-    return displays
+    return displays, rectangles_list
 
-def draw_plot(displays, individuals_name):
+def draw_plot(displays, rectangle_lists, individuals_name):
     """
     Given a table of categories and the rectangles to display for each category,
     draw an icon array made from those rectangles.
     """
     fig = plt.figure()
     ax = fig.add_subplot(111, aspect="equal")
-    all_rectangles = [r for rectangles in displays.column("rectangles") for r in rectangles]
+    all_rectangles = [r for rectangles in rectangle_lists for r in rectangles]
     for r in all_rectangles:
         ax.add_patch(r)
 
@@ -173,8 +173,8 @@ def draw_plot(displays, individuals_name):
     plt.text(1.1, 0.1, "Each box represents %g %s." % (count_per_box, individuals_name), fontsize=20)
 
 def display_combinations(category_counts, individuals_name="people"):
-    displays = make_displayed_rectangles(compute_combination_data(category_counts, individuals_name))
-    draw_plot(displays, individuals_name)
+    displays, rectangle_lists = make_displayed_rectangles(compute_combination_data(category_counts, individuals_name))
+    draw_plot(displays, rectangle_lists, individuals_name)
 
 
 def test():
