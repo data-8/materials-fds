@@ -17,7 +17,7 @@
         }
     },
     "updateContentCommand": "python3 -m pip install -r .devcontainer/requirements.txt",
-    "postAttachCommand": "code /workspaces/materials-sp22/lab/lab06/lab06.ipynb",
+    "postAttachCommand": "code /workspaces/materials-fds/lab/lab06/lab06.ipynb",
     "build": {
         "dockerfile": "../dockerfile",
         "context": "../.."

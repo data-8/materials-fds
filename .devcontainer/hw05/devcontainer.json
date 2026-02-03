@@ -17,7 +17,7 @@
         }
     },
     "updateContentCommand": "python3 -m pip install -r .devcontainer/requirements.txt",
-    "postAttachCommand": "code /workspaces/materials-sp22/hw/hw05/hw05.ipynb",
+    "postAttachCommand": "code /workspaces/materials-fds/hw/hw05/hw05.ipynb",
     "build": {
         "dockerfile": "../dockerfile",
         "context": "../.."

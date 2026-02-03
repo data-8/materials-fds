@@ -1,0 +1,6 @@
+datascience
+otter-grader
+numpy
+matplotlib
+scipy
+pandas
